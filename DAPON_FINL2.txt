@@ -1,0 +1,195 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32>cd C:\Users\mcc\OneDrive\Desktop
+
+C:\Users\mcc\OneDrive\Desktop>md "System Files" && md "Program Files"
+
+C:\Users\mcc\OneDrive\Desktop>echo system > sys.txt
+
+C:\Users\mcc\OneDrive\Desktop>echo program > prog.txt
+
+C:\Users\mcc\OneDrive\Desktop>icacls "System Files"
+System Files Everyone:(I)(CI)(DENY)(S,DC)
+             NT AUTHORITY\SYSTEM:(I)(OI)(CI)(F)
+             BUILTIN\Administrators:(I)(OI)(CI)(F)
+             DESKTOP-EQ1J2MI\mcc:(I)(OI)(CI)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>icacls "Program Files"
+Program Files Everyone:(I)(CI)(DENY)(S,DC)
+              NT AUTHORITY\SYSTEM:(I)(OI)(CI)(F)
+              BUILTIN\Administrators:(I)(OI)(CI)(F)
+              DESKTOP-EQ1J2MI\mcc:(I)(OI)(CI)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>icacls sys.txt
+sys.txt NT AUTHORITY\SYSTEM:(I)(F)
+        BUILTIN\Administrators:(I)(F)
+        DESKTOP-EQ1J2MI\mcc:(I)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>icacls prog.txt
+prog.txt NT AUTHORITY\SYSTEM:(I)(F)
+         BUILTIN\Administrators:(I)(F)
+         DESKTOP-EQ1J2MI\mcc:(I)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>icacls "System Files" /grant "mcc":(F,M,WDAC)
+processed file: System Files
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>icacls "Program Files" /grant "mcc":(F,M,WDAC)
+processed file: Program Files
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>icacls sys.txt /deny "mcc":(D,WDAC)
+processed file: sys.txt
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>icacls prog.txt /deny "mcc":(D,WDAC)
+processed file: prog.txt
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>icacls "System Files" & icacls "Program Files" & icacls sys.txt & icacls prog.txt
+System Files DESKTOP-EQ1J2MI\mcc:(F)
+             Everyone:(I)(CI)(DENY)(S,DC)
+             NT AUTHORITY\SYSTEM:(I)(OI)(CI)(F)
+             BUILTIN\Administrators:(I)(OI)(CI)(F)
+             DESKTOP-EQ1J2MI\mcc:(I)(OI)(CI)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+Program Files DESKTOP-EQ1J2MI\mcc:(F)
+              Everyone:(I)(CI)(DENY)(S,DC)
+              NT AUTHORITY\SYSTEM:(I)(OI)(CI)(F)
+              BUILTIN\Administrators:(I)(OI)(CI)(F)
+              DESKTOP-EQ1J2MI\mcc:(I)(OI)(CI)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+sys.txt NT AUTHORITY\SYSTEM:(I)(F)
+        BUILTIN\Administrators:(I)(F)
+        DESKTOP-EQ1J2MI\mcc:(I)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+prog.txt NT AUTHORITY\SYSTEM:(I)(F)
+         BUILTIN\Administrators:(I)(F)
+         DESKTOP-EQ1J2MI\mcc:(I)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>rd "Program Files"
+Access is denied.
+
+C:\Users\mcc\OneDrive\Desktop>del sys.txt
+C:\Users\mcc\OneDrive\Desktop\sys.txt
+Access is denied.
+
+C:\Users\mcc\OneDrive\Desktop>icacls *.txt /grant mcc:(D)
+processed file: code.txt
+processed file: prog.txt
+processed file: sys.txt
+Successfully processed 3 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>icacls *.txt
+code.txt DESKTOP-EQ1J2MI\mcc:(D)
+         NT AUTHORITY\SYSTEM:(I)(F)
+         BUILTIN\Administrators:(I)(F)
+         DESKTOP-EQ1J2MI\mcc:(I)(F)
+
+prog.txt DESKTOP-EQ1J2MI\mcc:(DENY)(WDAC,S)
+         DESKTOP-EQ1J2MI\mcc:(D)
+         NT AUTHORITY\SYSTEM:(I)(F)
+         BUILTIN\Administrators:(I)(F)
+         DESKTOP-EQ1J2MI\mcc:(I)(F)
+
+sys.txt DESKTOP-EQ1J2MI\mcc:(DENY)(WDAC,S)
+        DESKTOP-EQ1J2MI\mcc:(D)
+        NT AUTHORITY\SYSTEM:(I)(F)
+        BUILTIN\Administrators:(I)(F)
+        DESKTOP-EQ1J2MI\mcc:(I)(F)
+
+Successfully processed 4 files; Failed processing 0 files
+
+C:\Users\mcc\OneDrive\Desktop>wmic logicaldisk get name
+Name
+C:
+
+
+C:\Users\mcc\OneDrive\Desktop>chkdsk C:
+The type of the file system is NTFS.
+
+WARNING!  /F parameter not specified.
+Running CHKDSK in read-only mode.
+
+Stage 1: Examining basic file system structure ...
+  653824 file records processed.
+File verification completed.
+ Phase duration (File record verification): 1.17 minutes.
+  15196 large file records processed.
+ Phase duration (Orphan file record recovery): 0.00 milliseconds.
+  0 bad file records processed.
+ Phase duration (Bad file record checking): 0.51 milliseconds.
+
+Stage 2: Examining file name linkage ...
+  849 reparse records processed.
+  966018 index entries processed.
+Index verification completed.
+ Phase duration (Index verification): 3.57 minutes.
+  0 unindexed files scanned.
+ Phase duration (Orphan reconnection): 9.96 seconds.
+  0 unindexed files recovered to lost and found.
+ Phase duration (Orphan recovery to lost and found): 0.53 milliseconds.
+  849 reparse records processed.
+ Phase duration (Reparse point and Object ID verification): 29.31 milliseconds.
+
+Stage 3: Examining security descriptors ...
+Security descriptor verification completed.
+ Phase duration (Security descriptor verification): 332.72 milliseconds.
+  156098 data files processed.
+ Phase duration (Data attribute verification): 1.09 milliseconds.
+CHKDSK is verifying Usn Journal...
+  38428904 USN bytes processed.
+Usn Journal verification completed.
+ Phase duration (USN journal verification): 867.04 milliseconds.
+
+Windows has scanned the file system and found no problems.
+No further action is required.
+
+ 976097831 KB total disk space.
+ 100587312 KB in 478592 files.
+    300556 KB in 156099 indexes.
+         0 KB in bad sectors.
+    792955 KB in use by the system.
+     65536 KB occupied by the log file.
+ 874417008 KB available on disk.
+
+      4096 bytes in each allocation unit.
+ 244024457 total allocation units on disk.
+ 218604252 allocation units available on disk.
+Total duration: 4.93 minutes (296306 ms).
+
+C:\Users\mcc\OneDrive\Desktop>chkdsk C: /R
+The type of the file system is NTFS.
+Cannot lock current drive.
+
+Chkdsk cannot run because the volume is in use by another
+process.  Would you like to schedule this volume to be
+checked the next time the system restarts? (Y/N) N
+
+C:\Users\mcc\OneDrive\Desktop>chkdsk C: /F
+The type of the file system is NTFS.
+Cannot lock current drive.
+
+Chkdsk cannot run because the volume is in use by another
+process.  Would you like to schedule this volume to be
+checked the next time the system restarts? (Y/N) N
+
+C:\Users\mcc\OneDrive\Desktop>chkdsk C: /F
+The type of the file system is NTFS.
+Cannot lock current drive.
+
+C:\Users\mcc\OneDrive\Desktop>doskey /history > DAPON_FINL2.txt
